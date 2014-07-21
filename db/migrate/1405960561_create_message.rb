@@ -1,6 +1,6 @@
 class CreateMessage < ActiveRecord::Migration
   def up
-    create_table :messages do |t|
+    create_table :message_table do |t|
       t.string :message
       t.string :name
     end
