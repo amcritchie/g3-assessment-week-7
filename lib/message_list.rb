@@ -5,11 +5,19 @@ class MessageTable
 
   def create(username, message)
     insert_user_sql = <<-SQL
-      INSERT INTO users (username, password)
+      INSERT INTO message_table (name, message)
       VALUES ('#{username}', '#{message}')
-      RETURNING id
     SQL
 
-    @database_connection.sql(insert_user_sql).first["id"]
+    @database_connection.sql(insert_user_sql)
   end
+
+  def messages
+    users_sql = <<-SQL
+      SELECT name, message FROM message_table
+    SQL
+
+    @database_connection.sql(users_sql)
+  end
+
 end

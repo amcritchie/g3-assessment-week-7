@@ -8,7 +8,7 @@
 
       <form action="/message" method="post">
         <fieldset>
-          <legend>Information:</legend>
+          <legend>Add Message:</legend>
           <!--Flash notice-->
           <% if flash[:blank_message] %>
               <p style="color: red"><%= flash[:blank_message] %></p><br>
@@ -18,6 +18,21 @@
         </fieldset>
         <br>
         <button id="submit_button" type="submit">Add Message</button>
+
+        <h2>Messages</h2>
+
+        <table class="new_table" border="5">
+          <tr>
+            <th>Message</th>
+            <th>Name</th>
+          </tr>
+          <tr>
+            <% messages.each do |message| %>
+                    <td><%= message["message"] %></td>
+                    <td><%= message["name"] %></td>
+                </tr>
+            <% end %>
+            </table>
 
       </form>
     </article>

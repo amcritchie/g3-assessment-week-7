@@ -12,19 +12,18 @@ class Application < Sinatra::Application
   def initialize
     super
     @database_connection = GschoolDatabaseConnection::DatabaseConnection.establish(ENV['RACK_ENV'])
+
     @message_table = MessageTable.new(
         GschoolDatabaseConnection::DatabaseConnection.establish(ENV["RACK_ENV"])
     )
   end
 
   get '/' do
-    erb :index
+    messages = @message_table.messages
+
+    erb :index, :locals => {:messages => messages}
   end
 
-
-  get "/registration" do
-    erb :registration
-  end
 
   post "/message" do
 
@@ -33,7 +32,7 @@ class Application < Sinatra::Application
         redirect "/"
       end
       flash[:notice] = "Thanks for the message"
-      @message_table.create(params[:username], params[:password])
+      @message_table.create(params[:username],params[:message])
       redirect "/"
   end
 
