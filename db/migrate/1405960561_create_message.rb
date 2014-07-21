@@ -1,12 +1,12 @@
 class CreateMessage < ActiveRecord::Migration
   def up
-    create_table :user do |t|
+    create_table :messages do |t|
       t.string :message
-      t.string :username
+      t.string :name
     end
   end
 
   def down
-    drop_table :messages
+    drop_table :message_table
   end
 end
