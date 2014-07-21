@@ -1,4 +1,28 @@
-<h2> Welcome! </h2>
+<div class="wrapper">
+  <section class="clearfix">
+    <article class="one_fourth"></article>
+    <article class="one_half">
+      <h2> Welcome! </h2>
 
-<p>We show totally accurate lists of continents and countries!!</p>
+      <p>We show totally accurate lists of continents and countries!!</p>
+
+      <form action="/message" method="post">
+        <fieldset>
+          <legend>Information:</legend>
+          <!--Flash notice-->
+          <% if flash[:blank_message] %>
+              <p style="color: red"><%= flash[:blank_message] %></p><br>
+          <% end %>
+          Name <input type="text" name="username"><br><br>
+          Message <input type="text" name="message"><br>
+        </fieldset>
+        <br>
+        <button id="submit_button" type="submit">Add Message</button>
+
+      </form>
+    </article>
+    <article class="one_fourth"></article>
+  </section>
+</div>
+
 
